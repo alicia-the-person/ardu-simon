@@ -1,4 +1,4 @@
-#define MAX_ROUNDS 20
+#define MAX_ROUNDS 5
 #define RED_INDEX 0
 #define YELLOW_INDEX 1
 #define GREEN_INDEX 2
@@ -17,6 +17,7 @@ int level;
 int flashDelay = 1000;
 
 void newGame() {
+  delay(500); // Buffer
   level = 0;
   for (int i = 0; i < MAX_ROUNDS; i++) {
     sequence[i] = -1;
@@ -50,7 +51,7 @@ void loop() {
 
   // scale flashDelay down
   if (flashDelay >= 250) {
-    flashDelay = 1000 - 20 * level;
+    flashDelay = 1000 - 50 * level;
   } else {
     flashDelay = 250;
   }
@@ -95,8 +96,18 @@ void loop() {
       for (int i = 0; i < 4; i++) {
         digitalWrite(ledPins[i], HIGH);
       }
-      while (true) {
+      tone(buzzerPin, 523.25, 200); // C5
+      delay(200);
+      tone(buzzerPin, 659.26, 200); // E5
+      delay(200);
+      tone(buzzerPin, 783.99, 200); // G5
+      delay(200);
+      tone(buzzerPin, 1046.50, 500); // C6
+      delay(500);
+      for (int i = 0; i < 4; i++) {
+        digitalWrite(ledPins[i], LOW);
       }
+      newGame();
     } else {
       level++;
     }
