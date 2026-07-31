@@ -116,11 +116,11 @@ void loop() {
       for (int j = 0; j < 4; j++) {
         digitalWrite(ledPins[j], HIGH);
       }
-      delay(500);
+      delay(250);
       for (int j = 0; j < 4; j++) {
         digitalWrite(ledPins[j], LOW);
       }
-      delay(500);
+      delay(250);
     }
     newGame();
   }
