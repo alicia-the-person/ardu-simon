@@ -1,4 +1,4 @@
-#define MAX_ROUNDS 5
+#define MAX_ROUNDS 20
 #define RED_INDEX 0
 #define YELLOW_INDEX 1
 #define GREEN_INDEX 2
@@ -46,15 +46,18 @@ void setup() {
   newGame();
 }
 
-void loop() {
-  bool wonRound = false;
-
-  // scale flashDelay down
+void scaleFlashDelay() {
   if (flashDelay >= 250) {
-    flashDelay = 1000 - 50 * level;
+    flashDelay = 1000 - 100 * level;
   } else {
     flashDelay = 250;
   }
+}
+
+void loop() {
+  bool wonRound = false;
+
+  scaleFlashDelay();
 
   // Add value to the array
   sequence[level] = random(4);
